@@ -1,0 +1,39 @@
+<div class="col-md-8">
+  <% @restaurants.each do |restaurant| %>
+
+    <div class="article">
+      <h2><%= restaurant.name %></h2>
+      <img src="<%= restaurant.image_url %>"width="200" height="150"><br><br>
+
+<p><%= truncate(restaurant.intro, length: 50) %></p>
+
+        <%= link_to "詳細", restaurant_path(restaurant.id), class: 'btn btn-default' %>
+      <%= link_to 'レビューを書く', new_restaurant_review_path(restaurant.id), class: 'btn btn-default'%>
+
+    </div>
+
+   <% end %>
+   </div>
+
+<div class="col-md-4">
+  <div class="thumbnail">
+  <h2>【追加店舗】</h2>
+ <div class="list-group">
+    <% @restaurants.each_with_index do |restaurant, index| %>
+      <%# ６個目以上の記事の場合はBreak（each文をその場で終わらせる） %>
+      <% if index >= 5
+           break
+         end
+      %>
+      <%# link_to post.title, post_path(post.id), class: "list-group-item" %>
+      <a href="/restaurants/<%= restaurant.id %>" class="list-group-item"><%= restaurant.name %></a>
+
+
+    <% end %>
+
+
+  </div>
+</div>
+
+</div>
+
